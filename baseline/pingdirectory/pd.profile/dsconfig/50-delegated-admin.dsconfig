@@ -141,7 +141,8 @@ dsconfig create-http-servlet-cross-origin-policy  \
     --set "cors-allowed-methods: POST" \
     --set "cors-allowed-methods: DELETE" \
     --set "cors-allowed-methods: PATCH" \
-    --set "cors-allowed-origins: *"
+    --set "cors-allowed-origins: *" \
+    --set "cors-allowed-origins: https://${PD_DELEGATOR_PUBLIC_HOSTNAME}:${PD_DELEGATOR_HTTPS_PORT}"
 
 dsconfig set-http-servlet-extension-prop  \
     --extension-name "Delegated Admin" \
