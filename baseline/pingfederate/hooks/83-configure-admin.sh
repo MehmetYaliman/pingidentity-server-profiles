@@ -9,10 +9,11 @@ _acceptLicenseAgreement=$(
       --silent \
       --request PUT \
       --write-out '%{http_code}' \
+      --output /tmp/license.acceptance \
       --header "X-XSRF-Header: PingFederate" \
       --header 'Content-Type: application/json' \
       --data '{"accepted":true}' \
-      "https://localhost:${PF_ADMIN_PORT}/pf-admin-api/v1/license/agreement"  \
+      "https://localhost:${PF_ADMIN_PORT}/pf-admin-api/v1/license/agreement" \
       2>/dev/null
 )
 
@@ -33,6 +34,7 @@ case "${_acceptLicenseAgreement}" in
         --insecure \
         --silent \
         --write-out '%{http_code}' \
+        --output /tmp/create.admin \
         --request POST \
         --header "X-XSRF-Header: PingFederate" \
         --header 'Content-Type: application/json' \
@@ -53,7 +55,7 @@ case "${_acceptLicenseAgreement}" in
     echo "INFO: found existing admin"
     ;;
   *)
-    #echo_red "$(jq -r . /tmp/license.acceptance)"
+    echo_red "$(jq -r . /tmp/license.acceptance)"
     echo_red "License Agreement Failed"
     exit 83
     ;;
