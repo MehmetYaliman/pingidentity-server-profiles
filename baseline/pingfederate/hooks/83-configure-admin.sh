@@ -13,8 +13,7 @@ _acceptLicenseAgreement=$(
       --header "X-XSRF-Header: PingFederate" \
       --header 'Content-Type: application/json' \
       --data '{"accepted":true}' \
-      "https://localhost:${PF_ADMIN_PORT}/pf-admin-api/v1/license/agreement" \
-      2>/dev/null
+      "https://localhost:${PF_ADMIN_PORT}/pf-admin-api/v1/license/agreement" 
 )
 
 case "${_acceptLicenseAgreement}" in
